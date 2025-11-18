@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Olivka_Dreams/static/css/main.8ac1168c.css",
+    "main.js": "/Olivka_Dreams/static/js/main.6f71a25d.js",
+    "static/js/453.1ff60f80.chunk.js": "/Olivka_Dreams/static/js/453.1ff60f80.chunk.js",
+    "index.html": "/Olivka_Dreams/index.html",
+    "main.8ac1168c.css.map": "/Olivka_Dreams/static/css/main.8ac1168c.css.map",
+    "main.6f71a25d.js.map": "/Olivka_Dreams/static/js/main.6f71a25d.js.map",
+    "453.1ff60f80.chunk.js.map": "/Olivka_Dreams/static/js/453.1ff60f80.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8ac1168c.css",
+    "static/js/main.6f71a25d.js"
+  ]
+}
