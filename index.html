@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olivka_Dreams - Детские товары</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -31,13 +31,20 @@
         }
         
         body {
-            font-family: 'Comic Neue', cursive;
+            font-family: 'Roboto', 'Arial', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-weight: 600;
         }
         
         /* АНИМАЦИИ */
@@ -261,6 +268,11 @@
             gap: 10px;
         }
         
+        .welcome p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
         .about {
             padding: 25px 20px;
             text-align: center;
@@ -279,6 +291,11 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+        }
+        
+        .about p {
+            font-size: 16px;
+            line-height: 1.6;
         }
         
         .products {
@@ -355,9 +372,10 @@
         
         .card p {
             color: #666;
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 15px;
             flex: 1;
+            line-height: 1.5;
         }
         
         .product-details {
@@ -550,6 +568,7 @@
             color: #666;
             line-height: 1.8;
             margin-bottom: 20px;
+            font-size: 16px;
         }
         
         .product-modal-features {
@@ -577,6 +596,7 @@
             margin-bottom: 8px;
             color: #555;
             position: relative;
+            font-size: 15px;
         }
         
         .product-modal-features li:before {
@@ -657,12 +677,16 @@
             margin-bottom: 10px;
         }
         
-        /* ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ ТЕЛЕФОНА */
-        .phone-text {
-            font-family: 'Comic Neue', cursive;
-            font-size: 16px;
+        .contact-card h5 {
             color: #333;
-            margin: 8px 0;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
         
@@ -672,12 +696,12 @@
             gap: 10px;
             background: #ff6b6b;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
-            margin-top: 10px;
-            font-family: 'Comic Neue', cursive;
-            font-size: 14px;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
             transition: all 0.3s;
         }
         
@@ -702,6 +726,16 @@
             right: 20px;
             font-size: 50px;
             opacity: 0.3;
+        }
+        
+        .footer-text p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .footer-text .small {
+            font-size: 14px;
+            opacity: 0.9;
         }
         
         .footer-icons {
@@ -815,6 +849,10 @@
             margin-bottom: 20px;
         }
         
+        .empty-cart p {
+            font-size: 18px;
+        }
+        
         .cart-items {
             display: flex;
             flex-direction: column;
@@ -907,6 +945,12 @@
             border-top: 3px solid var(--secondary-color);
         }
         
+        .customer-form h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
         .form-group {
             margin-bottom: 15px;
         }
@@ -926,7 +970,7 @@
             padding: 12px;
             border: 2px solid var(--secondary-color);
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
             font-family: inherit;
         }
         
@@ -993,6 +1037,12 @@
             border: 2px solid var(--secondary-color);
         }
         
+        .pickup-info h5, .delivery-address h5 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
         .pickup-address-select {
             display: flex;
             flex-direction: column;
@@ -1013,11 +1063,21 @@
             font-weight: bold;
         }
         
+        .address-option h5 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .address-option p {
+            font-size: 14px;
+            color: #666;
+        }
+        
         .total-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
-            font-size: 14px;
+            font-size: 16px;
         }
         
         .grand-total {
@@ -1075,6 +1135,7 @@
             transform: translateX(150%);
             transition: transform 0.3s ease;
             max-width: 250px;
+            font-size: 14px;
         }
         
         .notification.show {
@@ -1083,6 +1144,10 @@
         
         /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            
             .items-grid {
                 grid-template-columns: 1fr;
             }
@@ -1143,7 +1208,7 @@
             }
             
             .card p {
-                font-size: 13px;
+                font-size: 14px;
             }
             
             .price-tag {
@@ -1153,6 +1218,10 @@
             .welcome, .about, .products, .contacts {
                 margin: 15px 10px;
                 padding: 20px 15px;
+            }
+            
+            .welcome p, .about p {
+                font-size: 15px;
             }
             
             .delivery-buttons {
@@ -1200,7 +1269,12 @@
                 padding: 15px;
             }
             
-            .phone-text {
+            .contact-card p {
+                font-size: 15px;
+            }
+            
+            .phone-btn {
+                padding: 10px 20px;
                 font-size: 15px;
             }
         }
@@ -1243,12 +1317,22 @@
                 font-size: 18px;
             }
             
-            .phone-text {
+            .contact-card p {
                 font-size: 14px;
             }
             
             .phone-btn {
                 padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .form-input {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .notification {
+                max-width: 200px;
                 font-size: 13px;
             }
         }
@@ -1634,14 +1718,14 @@
             <div class="contact-card">
                 <i class="fas fa-map-marked-alt"></i>
                 <h5>Доставка</h5>
-                <p class="phone-text">г. Ижевск 25км</p>
+                <p>г. Ижевск 25км</p>
             </div>
             
             <div class="contact-card">
                 <i class="fas fa-mobile-alt"></i>
                 <h5>Телефон</h5>
-                <p class="phone-text">+7 982 818 9420</p>
-                <p class="phone-text">+7 917 919 3949</p>
+                <p>+7 982 818 9420</p>
+                <p>+7 917 919 3949</p>
                 <a href="tel:+79828189420" class="phone-btn">
                     <i class="fas fa-phone"></i> Позвонить
                 </a>
@@ -1650,7 +1734,7 @@
             <div class="contact-card">
                 <i class="fas fa-envelope"></i>
                 <h5>Почта</h5>
-                <p class="phone-text">olivkadreams@yandex.ru</p>
+                <p>olivkadreams@yandex.ru</p>
                 <a href="mailto:olivkadreams@yandex.ru" class="phone-btn">
                     <i class="fas fa-envelope"></i> Написать
                 </a>
@@ -1659,7 +1743,7 @@
             <div class="contact-card">
                 <i class="fas fa-clock"></i>
                 <h5>Время работы</h5>
-                <p class="phone-text">Пн-Вск: 9:00-20:00</p>
+                <p>Пн-Вск: 9:00-20:00</p>
             </div>
         </div>
     </div>
