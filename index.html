@@ -427,6 +427,18 @@
             align-items: center;
             gap: 8px;
         }
+
+        .in-stockk {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #f81505;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
         
         .in-stock::before {
             content: '✅';
@@ -1445,7 +1457,7 @@
                     <div class="sizes">Размеры: S, M, L, XL</div>
                 </div>
                 <div class="product-status">
-                    <span class="in-stock">В наличии</span>
+                    <span class="in-stockk">Нет в наличии</span>
                 </div>
                 <button class="view-details" onclick="showProductDetails(3)">
                     <i class="fas fa-eye"></i> Подробнее о товаре
@@ -2729,3 +2741,4 @@
     </script>
 </body>
 </html>
+
