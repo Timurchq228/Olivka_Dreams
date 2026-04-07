@@ -1348,6 +1348,192 @@
                 font-size: 13px;
             }
         }
+    
+
+        .admin-btn {
+            background: rgba(255,255,255,0.28);
+        }
+
+        .admin-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-modal.show {
+            display: flex;
+        }
+
+        .admin-panel {
+            width: min(1100px, 100%);
+            max-height: 92vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff, #f8fcff);
+            border-radius: 22px;
+            border: var(--season-border);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.28), var(--season-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-header {
+            background: var(--cart-gradient);
+            color: white;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .admin-header h3 {
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-close, .admin-logout {
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .admin-close {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .admin-logout {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .admin-login, .admin-content {
+            padding: 22px;
+            overflow: auto;
+        }
+
+        .admin-login-card {
+            max-width: 420px;
+            margin: 10px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .admin-login-card p {
+            color: #666;
+            margin-bottom: 18px;
+        }
+
+        .admin-login-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .admin-primary-btn, .admin-secondary-btn, .admin-save-btn {
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            padding: 13px 16px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .admin-primary-btn, .admin-save-btn {
+            background: var(--button-gradient);
+            color: white;
+        }
+
+        .admin-secondary-btn {
+            background: #eef5fb;
+            color: #335;
+            border: 2px solid #d7e8f8;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+        }
+
+        .admin-product-card {
+            background: white;
+            border-radius: 18px;
+            border: 2px solid var(--secondary-color);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+            padding: 18px;
+        }
+
+        .admin-product-card h4 {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        .admin-product-card .form-group {
+            margin-bottom: 12px;
+        }
+
+        .admin-product-card textarea.form-input {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .admin-status-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .admin-status-row select {
+            flex: 1;
+        }
+
+        .admin-actions-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .admin-hint {
+            color: #666;
+            font-size: 13px;
+            margin: 0 0 18px;
+        }
+
+        .admin-hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .admin-header {
+                flex-wrap: wrap;
+            }
+            .admin-header h3 {
+                font-size: 18px;
+            }
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+            .admin-login-actions,
+            .admin-actions-row {
+                flex-direction: column;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1374,6 +1560,7 @@
             <a href="#" class="nav-btn"><i class="fas fa-home"></i> Главная</a>
             <a href="#items" class="nav-btn"><i class="fas fa-shopping-basket"></i> Товары</a>
             <a href="#contact" class="nav-btn"><i class="fas fa-address-book"></i> Контакты</a>
+            <a href="#" class="nav-btn admin-btn" id="adminBtn"><i class="fas fa-user-shield"></i> Админ</a>
             <a href="#" class="nav-btn cart-btn" id="cartBtn">
                 <i class="fas fa-shopping-cart"></i> Корзина 
                 <span class="cart-count" id="cartCount">0</span>
@@ -1898,9 +2085,47 @@
         </div>
     </div>
 
+
+
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-panel">
+            <div class="admin-header">
+                <h3><i class="fas fa-user-cog"></i> Административная панель Olivka</h3>
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <button class="admin-logout admin-hidden" id="adminLogoutBtn">Выйти</button>
+                    <button class="admin-close" id="closeAdminModal">&times;</button>
+                </div>
+            </div>
+
+            <div class="admin-login" id="adminLoginView">
+                <div class="admin-login-card">
+                    <h4 style="margin-bottom:10px; color: var(--primary-color);">Вход в админ-панель</h4>
+                    <p>Доступ только для редактирования товаров. Остальной код сайта не изменяется.</p>
+                    <div class="form-group">
+                        <label for="adminLogin"><i class="fas fa-user"></i> Логин</label>
+                        <input type="text" id="adminLogin" class="form-input" placeholder="Введите логин">
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword"><i class="fas fa-lock"></i> Пароль</label>
+                        <input type="password" id="adminPassword" class="form-input" placeholder="Введите пароль">
+                    </div>
+                    <div class="admin-login-actions">
+                        <button class="admin-primary-btn" id="adminLoginSubmit">Войти</button>
+                        <button class="admin-secondary-btn" id="adminLoginCancel">Отмена</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-content admin-hidden" id="adminContentView">
+                <p class="admin-hint">Доступно редактирование карточек товаров: название, цена, краткое описание, подпись на фото, строка с размерами/цветами, статус наличия, изображение, полное описание и список особенностей.</p>
+                <div class="admin-grid" id="adminProductsGrid"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // База данных товаров (расширена)
-        const productsDatabase = {
+        const defaultProductsDatabase = {
             1: { 
                 name: "Держатель для соски", 
                 price: 600, 
@@ -1914,7 +2139,11 @@
                     "Безопасный материал"
                 ],
                 colors: ["розовый", "голубой", "бежевый", "салатовый"],
-                material: "Силикон, текстиль"
+                material: "Силикон, текстиль",
+                shortDescription: "Удобный держатель с креплением к одежде",
+                badge: "Практичный",
+                cardInfo: "Цвета: розовый, голубой, бежевый",
+                inStock: true
             },
             2: { 
                 name: "Утепленный комбинезон из футера", 
@@ -1929,7 +2158,11 @@
                     "Карманы для рук"
                 ],
                 sizes: ["62", "68", "74", "80", "86"],
-                season: "Осень-Зима"
+                season: "Осень-Зима",
+                shortDescription: "Мягкий комбинезон для прогулок в прохладную погоду",
+                badge: "Теплый",
+                cardInfo: "Размеры: 62, 68, 74, 80",
+                inStock: true
             },
             3: { 
                 name: "Купальник для беременных", 
@@ -1944,7 +2177,11 @@
                     "Удобные регулируемые бретели"
                 ],
                 sizes: ["S", "M", "L", "XL", "XXL"],
-                colors: ["черный", "синий", "красный", "бирюзовый"]
+                colors: ["черный", "синий", "красный", "бирюзовый"],
+                shortDescription: "Удобный и стильный купальник для будущих мам",
+                badge: "Для мам",
+                cardInfo: "Размеры: S, M, L, XL",
+                inStock: false
             },
             4: { 
                 name: "Детское полотенце банное", 
@@ -1958,7 +2195,11 @@
                     "Мягкая ткань, не раздражает кожу",
                     "Яркие детские принты"
                 ],
-                designs: ["Мишки", "Зайчики", "Звезды", "Радуга"]
+                designs: ["Мишки", "Зайчики", "Звезды", "Радуга"],
+                shortDescription: "Мягкое полотенце с капюшоном для малышей",
+                badge: "Мягкое",
+                cardInfo: "Размер: 80x100 см",
+                inStock: true
             },
             5: { 
                 name: "Подарочный бокс", 
@@ -1972,7 +2213,11 @@
                     "Возможность выбрать тематику",
                     "Подарочная карточка"
                 ],
-                contents: ["Полотенце", "Пеленка", "Слюнявчик", "Носочки", "Игрушка"]
+                contents: ["Полотенце", "Пеленка", "Слюнявчик", "Носочки", "Игрушка"],
+                shortDescription: "Набор детских товаров в красивой упаковке",
+                badge: "Подарок",
+                cardInfo: "Состав: 5 предметов",
+                inStock: true
             },
             6: { 
                 name: "Рюкзак для мам", 
@@ -1987,7 +2232,11 @@
                     "Удобные мягкие лямки"
                 ],
                 colors: ["серый", "бежевый", "черный", "розовый"],
-                compartments: 5
+                compartments: 5,
+                shortDescription: "Вместительный рюкзак для детских вещей",
+                badge: "Стильный",
+                cardInfo: "Цвета: серый, бежевый, черный",
+                inStock: true
             },
             // НОВЫЕ ТОВАРЫ
             7: { 
@@ -2003,7 +2252,11 @@
                     "Легко расстегивается одной рукой"
                 ],
                 sizes: ["44/100 CDE", "44/100 CD"],
-                colors: ["серый", "красный", "черный"]
+                colors: ["серый", "красный", "черный"],
+                shortDescription: "Удобный бюстгальтер для кормящих мам",
+                badge: "Для мам",
+                cardInfo: "Размеры: 44/100 CDE, 44/100 CD",
+                inStock: true
             },
             8: { 
                 name: "WOW Непромокаемая пелёнка", 
@@ -2017,7 +2270,11 @@
                     "Удобство ухода – выдерживают стирку при 40–90°C"
                 ],
                 size: "65×90 см",
-                material: "Муслин с непромокаемой мембраной"
+                material: "Муслин с непромокаемой мембраной",
+                shortDescription: "Муслиновая пеленка с непромокаемым слоем",
+                badge: "Непромокаемая",
+                cardInfo: "Размер: 65×90 см",
+                inStock: true
             },
             9: { 
                 name: "Муслиновый нагрудник", 
@@ -2035,7 +2292,11 @@
                     "1 шт - 190₽",
                     "2 шт - 350₽",
                     "3 шт - 450₽"
-                ]
+                ],
+                shortDescription: "Двусторонний слюнявчик из муслина",
+                badge: "Непромокаемый",
+                cardInfo: "Цена: от 190 ₽ (1 шт)",
+                inStock: true
             },
             10: { 
                 name: "Косынка детская из муслина", 
@@ -2050,7 +2311,11 @@
                     "Доступна в разных расцветках"
                 ],
                 sizes: ["42-44", "44-46", "46-48"],
-                colors: ["розовый", "голубой", "желтый", "зеленый", "фиолетовый"]
+                colors: ["розовый", "голубой", "желтый", "зеленый", "фиолетовый"],
+                shortDescription: "Модная косынка для малышки из муслина",
+                badge: "Стильная",
+                cardInfo: "Размеры: 42-48",
+                inStock: true
             },
             11: { 
                 name: "Пеленка из муслина ❤️", 
@@ -2065,7 +2330,11 @@
                     "Безопасность – 100% хлопок, безопасный для детской кожи"
                 ],
                 size: "90×65 см",
-                uses: ["Пеленка", "Покрывало", "Подстилка", "Полотенце"]
+                uses: ["Пеленка", "Покрывало", "Подстилка", "Полотенце"],
+                shortDescription: "Мягкая пеленка из 100% муслина",
+                badge: "Мягкая",
+                cardInfo: "Размер: 90×65 см",
+                inStock: true
             },
             12: { 
                 name: "Костюм из муслина для мальчика", 
@@ -2080,7 +2349,11 @@
                     "Мягкость – становится еще мягче после каждой стирки"
                 ],
                 sizes: ["56-62 (0-3 мес)", "62-68 (3-6 мес)", "68-74 (6-9 мес)", "74-80 (9-12 мес)"],
-                color: "Оливковый"
+                color: "Оливковый",
+                shortDescription: "Комплект из муслина для мальчика",
+                badge: "Комплект",
+                cardInfo: "Размеры: 56-80",
+                inStock: true
             },
             13: { 
                 name: "Платье-боди + повязка для малышки", 
@@ -2095,7 +2368,11 @@
                     "Все швы обработаны, не натирают кожу"
                 ],
                 sizes: ["68 (3-6 мес)", "74 (6-9 мес)", "80 (9-12 мес)", "86 (12-18 мес)"],
-                occasions: ["Фотосессии", "Дни рождения", "Прогулки", "Праздники"]
+                occasions: ["Фотосессии", "Дни рождения", "Прогулки", "Праздники"],
+                shortDescription: "Комплект для малышки из муслина",
+                badge: "Набор",
+                cardInfo: "Размеры: 68-86",
+                inStock: true
             },
             14: { 
                 name: "Резинка для волос из муслина", 
@@ -2115,16 +2392,220 @@
                     "11-20 шт - 40₽/шт",
                     "21+ шт - 35₽/шт"
                 ],
-                colors: "12+ различных цветов"
+                colors: "12+ различных цветов",
+                shortDescription: "Мягкая резинка из двухслойного муслина",
+                badge: "Аксессуар",
+                cardInfo: "12+ цветов",
+                inStock: true
             }
         };
         
+        const ADMIN_CREDENTIALS = { login: 'GoOliv', password: 'Zagadka.1996' };
+        const PRODUCTS_STORAGE_KEY = 'olivkaProductsDatabase';
+        let productsDatabase = loadProductsDatabase();
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let isAdminAuthenticated = false;
         let deliveryType = 'pickup';
         let selectedAddress = 'Пушкинская 227';
         let currentProductId = null;
         let currentSeason = 'winter';
         
+
+        function loadProductsDatabase() {
+            const savedData = localStorage.getItem(PRODUCTS_STORAGE_KEY);
+            if (savedData) {
+                try {
+                    return JSON.parse(savedData);
+                } catch (error) {
+                    console.error('Ошибка чтения базы товаров из localStorage:', error);
+                }
+            }
+            return JSON.parse(JSON.stringify(defaultProductsDatabase));
+        }
+
+        function saveProductsDatabase() {
+            localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(productsDatabase));
+        }
+
+        function getCardInfoText(productId) {
+            const product = productsDatabase[productId];
+            if (!product) return '';
+            return product.cardInfo ||
+                (product.sizes ? `Размеры: ${Array.isArray(product.sizes) ? product.sizes.join(', ') : product.sizes}` : '') ||
+                (product.size ? `Размер: ${product.size}` : '') ||
+                (product.colors ? `Цвета: ${Array.isArray(product.colors) ? product.colors.join(', ') : product.colors}` : '') ||
+                '';
+        }
+
+        function applyProductDataToCard(productId) {
+            const product = productsDatabase[productId];
+            const card = document.querySelector(`.card[data-product-id="${productId}"]`);
+            if (!product || !card) return;
+
+            const title = card.querySelector('h4');
+            const shortDescription = card.querySelector('p');
+            const priceTag = card.querySelector('.price-tag');
+            const sizes = card.querySelector('.sizes');
+            const status = card.querySelector('.product-status span');
+            const badge = card.querySelector('.photo-label');
+            const image = card.querySelector('.product-img');
+            const addButton = card.querySelector('.add-to-cart-btn');
+
+            if (title) title.textContent = product.name || '';
+            if (shortDescription) shortDescription.textContent = product.shortDescription || product.description || '';
+            if (priceTag) priceTag.textContent = `${formatPrice(Number(product.price) || 0)} ₽`;
+            if (sizes) sizes.textContent = getCardInfoText(productId);
+            if (badge) badge.textContent = product.badge || 'Товар';
+            if (image) {
+                image.src = product.image || '';
+                image.alt = product.name || '';
+            }
+            if (status) {
+                status.textContent = product.inStock ? 'В наличии' : 'Нет в наличии';
+                status.className = product.inStock ? 'in-stock' : 'in-stockk';
+            }
+            if (addButton) {
+                addButton.disabled = !product.inStock;
+                addButton.style.opacity = product.inStock ? '1' : '0.6';
+                addButton.style.cursor = product.inStock ? 'pointer' : 'not-allowed';
+            }
+        }
+
+        function applyAllProductsToCards() {
+            document.querySelectorAll('.items-grid .card').forEach((card, index) => {
+                const productId = index + 1;
+                card.setAttribute('data-product-id', String(productId));
+                applyProductDataToCard(productId);
+            });
+        }
+
+        function renderAdminProducts() {
+            const grid = document.getElementById('adminProductsGrid');
+            if (!grid) return;
+
+            const ids = Object.keys(productsDatabase).sort((a, b) => Number(a) - Number(b));
+            grid.innerHTML = ids.map((id) => {
+                const product = productsDatabase[id];
+                return `
+                    <div class="admin-product-card" data-admin-product-id="${id}">
+                        <h4>#${id} — ${product.name}</h4>
+                        <div class="form-group">
+                            <label>Название</label>
+                            <input type="text" class="form-input admin-field" data-field="name" value="${escapeHtml(product.name || '')}">
+                        </div>
+                        <div class="form-group">
+                            <label>Цена</label>
+                            <input type="number" min="0" class="form-input admin-field" data-field="price" value="${Number(product.price) || 0}">
+                        </div>
+                        <div class="form-group">
+                            <label>Краткое описание на карточке</label>
+                            <textarea class="form-input admin-field" data-field="shortDescription">${escapeHtml(product.shortDescription || product.description || '')}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Подпись на фото</label>
+                            <input type="text" class="form-input admin-field" data-field="badge" value="${escapeHtml(product.badge || '')}">
+                        </div>
+                        <div class="form-group">
+                            <label>Строка размеров / цветов / состава</label>
+                            <input type="text" class="form-input admin-field" data-field="cardInfo" value="${escapeHtml(getCardInfoText(id))}">
+                        </div>
+                        <div class="form-group">
+                            <label>Путь к изображению</label>
+                            <input type="text" class="form-input admin-field" data-field="image" value="${escapeHtml(product.image || '')}">
+                        </div>
+                        <div class="form-group">
+                            <label>Полное описание</label>
+                            <textarea class="form-input admin-field" data-field="description">${escapeHtml(product.description || '')}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Особенности (каждая с новой строки)</label>
+                            <textarea class="form-input admin-field" data-field="features">${escapeHtml((product.features || []).join('\n'))}</textarea>
+                        </div>
+                        <div class="form-group admin-status-row">
+                            <label style="margin:0; min-width:90px;">Наличие</label>
+                            <select class="form-input admin-field" data-field="inStock">
+                                <option value="true" ${product.inStock ? 'selected' : ''}>В наличии</option>
+                                <option value="false" ${!product.inStock ? 'selected' : ''}>Нет в наличии</option>
+                            </select>
+                        </div>
+                        <div class="admin-actions-row">
+                            <button class="admin-save-btn" onclick="saveAdminProduct(${id})">Сохранить</button>
+                            <button class="admin-secondary-btn" onclick="resetAdminProduct(${id})">Сбросить</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function saveAdminProduct(productId) {
+            const card = document.querySelector(`.admin-product-card[data-admin-product-id="${productId}"]`);
+            if (!card || !productsDatabase[productId]) return;
+
+            const getValue = (field) => card.querySelector(`.admin-field[data-field="${field}"]`)?.value || '';
+            productsDatabase[productId].name = getValue('name').trim();
+            productsDatabase[productId].price = Number(getValue('price')) || 0;
+            productsDatabase[productId].shortDescription = getValue('shortDescription').trim();
+            productsDatabase[productId].badge = getValue('badge').trim();
+            productsDatabase[productId].cardInfo = getValue('cardInfo').trim();
+            productsDatabase[productId].image = getValue('image').trim();
+            productsDatabase[productId].description = getValue('description').trim();
+            productsDatabase[productId].features = getValue('features').split('\n').map(item => item.trim()).filter(Boolean);
+            productsDatabase[productId].inStock = getValue('inStock') === 'true';
+
+            saveProductsDatabase();
+            applyProductDataToCard(productId);
+            renderAdminProducts();
+            showNotification(`Товар #${productId} сохранен`);
+        }
+
+        function resetAdminProduct(productId) {
+            const defaults = JSON.parse(JSON.stringify(defaultProductsDatabase));
+            if (!defaults[productId]) return;
+            productsDatabase[productId] = defaults[productId];
+            saveProductsDatabase();
+            applyProductDataToCard(productId);
+            renderAdminProducts();
+            showNotification(`Товар #${productId} сброшен`);
+        }
+
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.add('show');
+            toggleAdminView(isAdminAuthenticated);
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.remove('show');
+        }
+
+        function toggleAdminView(isAuthenticated) {
+            isAdminAuthenticated = isAuthenticated;
+            document.getElementById('adminLoginView').classList.toggle('admin-hidden', isAuthenticated);
+            document.getElementById('adminContentView').classList.toggle('admin-hidden', !isAuthenticated);
+            document.getElementById('adminLogoutBtn').classList.toggle('admin-hidden', !isAuthenticated);
+            if (isAuthenticated) {
+                renderAdminProducts();
+            }
+        }
+
+        function handleAdminLogin() {
+            const login = document.getElementById('adminLogin').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            if (login === ADMIN_CREDENTIALS.login && password === ADMIN_CREDENTIALS.password) {
+                toggleAdminView(true);
+                showNotification('Вход выполнен');
+                return;
+            }
+            showNotification('Неверный логин или пароль');
+        }
+
         // Автоматическое определение сезона
         function updateSeasonByDate() {
             const now = new Date();
@@ -2350,6 +2831,10 @@
         function addToCart(productId) {
             const product = productsDatabase[productId];
             if (!product) return;
+            if (!product.inStock) {
+                showNotification(`Товар ${product.name} сейчас недоступен`);
+                return;
+            }
             
             const existingItem = cart.find(item => item.id === productId);
             
@@ -2367,6 +2852,28 @@
             
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
             updateCartDisplay();
             showNotification(`${product.name} добавлен в корзину`);
         }
@@ -2375,6 +2882,28 @@
             cart = cart.filter(item => item.id !== productId);
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
             updateCartDisplay();
         }
         
@@ -2388,6 +2917,28 @@
                 }
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
                 updateCartDisplay();
             }
         }
@@ -2396,6 +2947,28 @@
             cart = [];
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
             updateCartDisplay();
             showNotification('Корзина очищена');
         }
@@ -2575,6 +3148,28 @@
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
             
             // Автоматическая установка сезона
             const savedSeason = localStorage.getItem('season');
@@ -2724,6 +3319,28 @@
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
+            applyAllProductsToCards();
+            
+            document.getElementById('adminBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openAdminModal();
+            });
+
+            document.getElementById('closeAdminModal').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginCancel').addEventListener('click', closeAdminModal);
+            document.getElementById('adminLoginSubmit').addEventListener('click', handleAdminLogin);
+            document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') handleAdminLogin();
+            });
+            document.getElementById('adminLogoutBtn').addEventListener('click', function() {
+                toggleAdminView(false);
+                document.getElementById('adminLogin').value = '';
+                document.getElementById('adminPassword').value = '';
+                showNotification('Вы вышли из админ-панели');
+            });
+            document.getElementById('adminModal').addEventListener('click', function(e) {
+                if (e.target === this) closeAdminModal();
+            });
                     updateCartDisplay();
                     document.getElementById('cartModal').classList.remove('show');
                     
