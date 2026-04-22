@@ -1,14 +1,12 @@
 <?php
-$host = '127.0.0.1';
-$port = '3306';
-$dbname = 'olivka_db';
-$username = 'root';
-$password = '';
-$charset = 'utf8mb4';
+$host = 'localhost';
+$dbname = 'cb878677_olivka';
+$username = 'cb878677_olivka';
+$password = 'Zagadka.1996';
 
 try {
     $pdo = new PDO(
-        "mysql:host={$host};port={$port};dbname={$dbname};charset={$charset}",
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
         $username,
         $password,
         [
@@ -17,5 +15,5 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    die('Ошибка подключения к базе данных: ' . $e->getMessage());
+    die('Ошибка подключения к БД: ' . $e->getMessage());
 }
