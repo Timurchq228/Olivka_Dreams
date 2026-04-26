@@ -58,7 +58,7 @@ body.panel-body{margin:0;font-family:'Montserrat','Arial',sans-serif;background:
 .panel-auth-card .btn{min-height:52px}
 
 
-/* ==== mobile fixes + shared site style ==== */
+
 body.panel-body{min-height:100vh;overflow-x:hidden;background:#f5f9ff;color:#333}
 .panel-shell,.panel-auth-shell{width:100%;max-width:1120px}
 .panel-card,.panel-auth-card{background:#fff;border-radius:24px;box-shadow:0 10px 25px rgba(0,0,0,.07)}
@@ -184,3 +184,4 @@ body.panel-body{min-height:100vh;overflow-x:hidden;background:#f5f9ff;color:#333
         text-align: center;
     }
 }
+.radio-row{display:flex;gap:14px;flex-wrap:wrap;min-height:54px;align-items:center}.radio-row label{border:1px solid #ffc1dd;border-radius:18px;padding:14px 18px;background:#fff;cursor:pointer;font-weight:600}.radio-row input{margin-right:8px}

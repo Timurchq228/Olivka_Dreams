@@ -65,7 +65,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             font-weight: 600;
         }
         
-        /* АНИМАЦИИ */
+        
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -101,7 +101,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             50% { opacity: 1; }
         }
         
-        /* СЕЗОННЫЕ ЧАСТИЦЫ */
+        
         .season-particle {
             position: fixed;
             font-size: 20px;
@@ -112,7 +112,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             animation-iteration-count: infinite;
         }
         
-        /* ШАПКА С ГИРЛЯНДОЙ */
+        
         .top {
             background: var(--header-gradient);
             padding: 15px;
@@ -134,7 +134,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             overflow: hidden;
         }
         
-        /* УЛУЧШЕННАЯ ГИРЛЯНДА - ТОЛЬКО ДЛЯ ЗИМЫ */
+        
         .garland-line {
             position: absolute;
             top: 5px;
@@ -203,7 +203,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             font-size: 20px;
         }
         
-        /* НАВИГАЦИЯ БЕЗ ПРОКРУТКИ */
+        
         .nav {
             display: flex;
             justify-content: space-around;
@@ -256,7 +256,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             right: -5px;
         }
         
-        /* КОНТЕНТ */
+        
         .welcome {
             background: linear-gradient(135deg, rgba(77, 166, 255, 0.15), rgba(138, 216, 255, 0.1));
             padding: 25px 20px;
@@ -414,9 +414,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             gap: 10px;
         }
         
-        .price-tag::before {
-            content: '💰';
-        }
+        
         
         .sizes {
             color: #666;
@@ -426,9 +424,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             gap: 8px;
         }
         
-        .sizes::before {
-            content: '📏';
-        }
+      
         
         .product-status {
             margin-bottom: 15px;
@@ -458,11 +454,9 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             gap: 8px;
         }
         
-        .in-stock::before {
-            content: '✅';
-        }
+     
         
-        /* КНОПКА "ПОДРОБНЕЕ" */
+        
         .view-details {
             color: var(--primary-color);
             text-decoration: none;
@@ -505,7 +499,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
         
-        /* МОДАЛЬНОЕ ОКНО ТОВАРА */
+        
         .product-modal {
             position: fixed;
             top: 0;
@@ -667,7 +661,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             border: 2px solid #ddd;
         }
         
-        /* КОНТАКТЫ */
+        
         .contacts {
             padding: 25px 20px;
         }
@@ -740,7 +734,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             transform: translateY(-2px);
         }
         
-        /* ФУТЕР */
+        
         .bottom {
             background: var(--header-gradient);
             color: white;
@@ -785,7 +779,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             transform: translateY(-3px);
         }
         
-        /* КОРЗИНА */
+        
         .cart-modal {
             position: fixed;
             top: 0;
@@ -969,7 +963,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             justify-content: center;
         }
         
-        /* ФОРМА ОФОРМЛЕНИЯ */
+        
         .customer-form {
             padding: 20px;
             border-top: 3px solid var(--secondary-color);
@@ -1004,7 +998,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             font-family: inherit;
         }
         
-        /* НИЖНЯЯ ЧАСТЬ КОРЗИНЫ */
+        
         .cart-footer {
             background: #f8f9fa;
             border-top: 3px solid var(--secondary-color);
@@ -1148,7 +1142,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             color: white;
         }
         
-        /* УВЕДОМЛЕНИЯ */
+        
         .notification {
             position: fixed;
             top: 80px;
@@ -1172,7 +1166,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             transform: translateX(0);
         }
         
-        /* АДАПТИВНОСТЬ */
+        
         @media (max-width: 768px) {
             body {
                 font-size: 16px;
@@ -1523,13 +1517,13 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
 
 </head>
 <body>
-    <!-- Сезонные частицы -->
+    
     <div id="seasonParticles"></div>
 
-    <!-- Шапка с гирляндой -->
+    
     <div class="top">
         <div class="header-decoration" id="headerDecoration">
-            <!-- Гирлянда генерируется через JS для зимы -->
+            
         </div>
         <div class="logo-area">
             <div class="logo-frame">
@@ -1541,7 +1535,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             </div>
         </div>
         
-        <!-- НАВИГАЦИЯ БЕЗ ПРОКРУТКИ -->
+        
         <div class="nav">
             <a href="#" class="nav-btn"><i class="fas fa-home"></i> Главная</a>
             <a href="#items" class="nav-btn"><i class="fas fa-shopping-basket"></i> Товары</a>
@@ -1558,19 +1552,19 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
         </div>
     </div>
 
-    <!-- Главный баннер -->
+    
     <div class="welcome">
         <h2><i class="fas fa-child"></i> Добро пожаловать в Olivka_Dreams!</h2>
         <p>Качественные муслиновые изделия для малышей и удобные аксессуары для мам. Подберите идеальные товары для вашего малыша в любую погоду!</p>
     </div>
 
-    <!-- Описание магазина -->
+    
     <div class="about">
         <h3><i class="fas fa-info-circle"></i> О нашем магазине</h3>
         <p>Мы создаем уютные и безопасные изделия из натуральных материалов. Все товары прошли контроль качества и созданы с любовью. Каждый сезон мы предлагаем специальные коллекции!</p>
     </div>
 
-    <!-- Товары -->
+    
     <div class="products" id="items">
         <h3><i class="fas fa-gift"></i> Наши товары</h3>
         
@@ -1613,7 +1607,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
         </div>
     </div>
 
-    <!-- Контакты -->
+    
     <div class="contacts" id="contact">
         <h3><i class="fas fa-phone-alt"></i> Как нас найти</h3>
         
@@ -1651,7 +1645,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
         </div>
     </div>
 
-    <!-- Футер -->
+    
     <div class="bottom">
         <div class="footer-text">
             <p>© 2025 Магазин детских товаров</p>
@@ -1673,7 +1667,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО ТОВАРА -->
+    
     <div class="product-modal" id="productModal">
         <div class="product-modal-content">
             <div class="product-modal-header">
@@ -1681,12 +1675,12 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                 <button class="close-product-modal" id="closeProductModal">&times;</button>
             </div>
             <div class="product-modal-body" id="productModalBody">
-                <!-- Содержимое заполняется JavaScript -->
+                
             </div>
         </div>
     </div>
 
-    <!-- КОРЗИНА -->
+    
     <div class="cart-modal" id="cartModal">
         <div class="cart-content">
             <div class="cart-header">
@@ -1702,11 +1696,11 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     </div>
                     
                     <div class="cart-items" id="cartItems">
-                        <!-- Товары добавляются сюда -->
+                        
                     </div>
                 </div>
                 
-                <!-- ФОРМА ДАННЫХ КЛИЕНТА -->
+                
                 <div class="customer-form">
                     <h4><i class="fas fa-user"></i> Ваши данные</h4>
                     
@@ -1730,7 +1724,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     </div>
                 </div>
                 
-                <!-- НИЖНЯЯ ЧАСТЬ -->
+                
                 <div class="cart-footer">
                     <div class="cart-total">
                         <div class="total-row">
@@ -1780,7 +1774,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                             </div>
                         </div>
                         
-                        <!-- Блок с доставкой - будет показываться только при выборе доставки -->
+                        
                         <div id="deliveryCostRow" style="display: none;">
                             <div class="total-row">
                                 <span>Доставка:</span>
@@ -1808,7 +1802,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
     </div>
 
     <script>
-        // База данных товаров (расширена)
         const productsDatabase = <?= json_encode($productsJs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
         
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -1834,8 +1827,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     return { cost: 0, note: '0 ₽' };
             }
         }
-        
-        // Автоматическое определение сезона
         function updateSeasonByDate() {
             const now = new Date();
             const month = now.getMonth() + 1;
@@ -1850,33 +1841,21 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                 changeSeason(newSeason);
             }
         }
-        
-        // Улучшенная гирлянда для зимы
         function createWinterGarland() {
             const headerDecoration = document.getElementById('headerDecoration');
             headerDecoration.innerHTML = '';
-            
-            // Создаем две линии гирлянды
             for (let line = 0; line < 2; line++) {
                 const garlandLine = document.createElement('div');
                 garlandLine.className = 'garland-line';
                 garlandLine.style.top = (line * 15 + 5) + 'px';
-                
-                // Создаем 15 огоньков в каждой линии
                 for (let i = 0; i < 15; i++) {
                     const light = document.createElement('div');
                     light.className = 'garland-light';
-                    
-                    // Чередуем цвета
                     const colors = ['#ff0000', '#00ff00', '#ffff00', '#00ffff', '#ff00ff', '#ff8800'];
                     light.style.backgroundColor = colors[i % colors.length];
                     light.style.color = colors[i % colors.length];
-                    
-                    // Располагаем равномерно
                     const position = (i / 14) * 100;
                     light.style.left = position + '%';
-                    
-                    // Разная анимация для каждого огонька
                     light.style.animationDelay = (i * 0.2) + 's';
                     light.style.animationDuration = (1 + Math.random() * 2) + 's';
                     
@@ -1910,11 +1889,7 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     root.style.setProperty('--season-border', '2px solid #8ad8ff');
                     root.style.setProperty('--season-shadow', '0 0 20px rgba(138, 216, 255, 0.3)');
                     seasonIndicator.textContent = '❄️';
-                    
-                    // Гирлянда только для зимы
                     createWinterGarland();
-                    
-                    // Снежинки
                     for (let i = 0; i < 30; i++) {
                         const snowflake = document.createElement('div');
                         snowflake.className = 'season-particle';
@@ -1941,8 +1916,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     root.style.setProperty('--season-border', '2px solid #ff88cc');
                     root.style.setProperty('--season-shadow', '0 0 20px rgba(255, 136, 204, 0.3)');
                     seasonIndicator.textContent = '🌸';
-                    
-                    // Цветочки
                     for (let i = 0; i < 8; i++) {
                         const flower = document.createElement('div');
                         flower.className = 'season-particle';
@@ -1968,8 +1941,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     root.style.setProperty('--season-border', '2px solid #33ff99');
                     root.style.setProperty('--season-shadow', '0 0 20px rgba(51, 255, 153, 0.3)');
                     seasonIndicator.textContent = '☀️';
-                    
-                    // Песок
                     for (let i = 0; i < 20; i++) {
                         const sand = document.createElement('div');
                         sand.className = 'season-particle';
@@ -1995,8 +1966,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     root.style.setProperty('--season-border', '2px solid #ffaa33');
                     root.style.setProperty('--season-shadow', '0 0 20px rgba(255, 170, 51, 0.3)');
                     seasonIndicator.textContent = '🍂';
-                    
-                    // Листья
                     for (let i = 0; i < 25; i++) {
                         const leaf = document.createElement('div');
                         leaf.className = 'season-particle';
@@ -2013,23 +1982,15 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             
             localStorage.setItem('season', season);
         }
-        
-        // Функция для валидации ввода телефона
         function validatePhoneInput(event) {
             const input = event.target;
             let value = input.value;
-            
-            // Удаляем все символы, кроме цифр, плюса, скобок, дефиса и пробела
             value = value.replace(/[^\d+\-()\s]/g, '');
-            
-            // Если первый символ не +7, добавляем его
             if (!value.startsWith('+7') && !value.startsWith('7') && !value.startsWith('8')) {
                 if (value.length > 0) {
                     value = '+7' + value.replace(/\D/g, '');
                 }
             }
-            
-            // Форматируем номер
             if (value.startsWith('+7')) {
                 let numbers = value.replace(/\D/g, '').substring(1); // Убираем +7
                 
@@ -2050,8 +2011,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             
             input.value = value;
         }
-        
-        // Функции корзины
         function updateCartCount() {
             const count = cart.reduce((sum, item) => sum + item.quantity, 0);
             document.getElementById('cartCount').textContent = count;
@@ -2189,8 +2148,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                 setTimeout(() => notification.remove(), 300);
             }, 2000);
         }
-        
-        // Функция показа деталей товара
         function showProductDetails(productId) {
             currentProductId = productId;
             const product = productsDatabase[productId];
@@ -2256,8 +2213,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
             document.getElementById('productModal').classList.remove('show');
             currentProductId = null;
         }
-        
-        // Отправка заказа на бэкенд
         async function sendOrderToBackend(orderData) {
             const BACKEND_URL = 'api/create_order.php';
 
@@ -2280,20 +2235,14 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                 throw error;
             }
         }
-        
-        // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             updateCartCount();
-            
-            // Автоматическая установка сезона
             const savedSeason = localStorage.getItem('season');
             if (savedSeason) {
                 changeSeason(savedSeason);
             } else {
                 updateSeasonByDate();
             }
-            
-            // Настройка валидации телефона
             const phoneInput = document.getElementById('customerPhone');
             if (phoneInput) {
                 phoneInput.addEventListener('input', validatePhoneInput);
@@ -2306,37 +2255,23 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     } else if (!pastedText.startsWith('+7')) {
                         pastedText = '+7' + pastedText;
                     }
-                    
-                    // Имитируем ввод
                     phoneInput.value = pastedText;
                     validatePhoneInput({target: phoneInput});
                 });
             }
-            
-            // Открытие корзины
             document.getElementById('cartBtn').addEventListener('click', function(e) {
                 e.preventDefault();
                 document.getElementById('cartModal').classList.add('show');
                 updateCartDisplay();
             });
-            
-            // Закрытие корзины
             document.getElementById('closeCart').addEventListener('click', function() {
                 document.getElementById('cartModal').classList.remove('show');
             });
-            
-            // Закрытие модального окна товара
             document.getElementById('closeProductModal').addEventListener('click', closeProductModal);
-            
-            // Закрытие по клику вне окна
             document.getElementById('productModal').addEventListener('click', function(e) {
                 if (e.target === this) closeProductModal();
             });
-            
-            // Очистка корзины
             document.getElementById('clearCart').addEventListener('click', clearCart);
-            
-            // Выбор способа доставки
             document.querySelectorAll('.delivery-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     document.querySelectorAll('.delivery-btn').forEach(btn => btn.classList.remove('active'));
@@ -2355,8 +2290,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     updateCartDisplay();
                 });
             });
-            
-            // Выбор адреса самовывоза
             document.querySelectorAll('.address-option').forEach(option => {
                 option.addEventListener('click', function() {
                     document.querySelectorAll('.address-option').forEach(opt => opt.classList.remove('selected'));
@@ -2364,8 +2297,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     selectedAddress = this.getAttribute('data-address');
                 });
             });
-            
-            // Оформление заказа
             document.getElementById('checkoutBtn').addEventListener('click', async function() {
                 if (cart.length === 0) {
                     showNotification('Добавьте товары в корзину');
@@ -2380,8 +2311,6 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                     showNotification('Заполните имя и телефон');
                     return;
                 }
-                
-                // Валидация телефона
                 const phonePattern = /^\+7\s?[\(]?\d{3}[\)]?\s?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
                 if (!phonePattern.test(phone)) {
                     showNotification('Введите корректный номер телефона в формате: +7 (999) 999-99-99');
@@ -2431,15 +2360,11 @@ $customerPhone = $_SESSION['customer_phone'] ?? '';
                 try {
                     await sendOrderToBackend(orderData);
                     showNotification('Заказ успешно отправлен!');
-                    
-                    // Очищаем корзину
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
                     updateCartDisplay();
                     document.getElementById('cartModal').classList.remove('show');
-                    
-                    // Очищаем форму
                     document.getElementById('customerName').value = '';
                     document.getElementById('customerPhone').value = '';
                     document.getElementById('customerComment').value = '';

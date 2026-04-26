@@ -5,166 +5,72 @@ header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/../config/db.php';
 $telegram = require __DIR__ . '/../config/telegram.php';
 
-$inputRaw = file_get_contents('php://input');
-$input = json_decode($inputRaw, true);
+$data = json_decode(file_get_contents('php://input'), true);
 
-if (!$input || !is_array($input)) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Нет данных для оформления заказа'
-    ], JSON_UNESCAPED_UNICODE);
+if (!$data) {
+    echo json_encode(['success' => false, 'message' => 'Нет данных'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-/*
-Поддержка двух форматов:
-1) customer
-2) customerInfo
-*/
-$customer = $input['customer'] ?? ($input['customerInfo'] ?? []);
-$items = $input['items'] ?? [];
+$customer = $data['customerInfo'] ?? [];
+$items = $data['items'] ?? [];
 
-if (empty($items) || !is_array($items)) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Корзина пуста'
-    ], JSON_UNESCAPED_UNICODE);
+if (!$items) {
+    echo json_encode(['success' => false, 'message' => 'Корзина пустая'], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+$name = trim($customer['name'] ?? '');
+$phone = trim($customer['phone'] ?? '');
+$deliveryType = trim($customer['deliveryType'] ?? 'pickup');
+$deliveryLabel = trim($customer['deliveryLabel'] ?? 'Самовывоз');
+$address = trim($customer['address'] ?? '');
+$comment = trim($customer['comment'] ?? '');
 $customerId = $_SESSION['customer_id'] ?? null;
 
-$customerName = trim($customer['name'] ?? '');
-$customerPhone = trim($customer['phone'] ?? '');
-$address = trim($customer['address'] ?? '');
-$commentText = trim($customer['comment'] ?? '');
-
-/*
-Поддержка нескольких названий полей доставки
-*/
-$deliveryType = trim(
-    $input['delivery']
-    ?? $input['deliveryType']
-    ?? ($customer['deliveryType'] ?? 'Самовывоз')
-);
-
-$deliveryMethod = trim(
-    $input['delivery_method']
-    ?? $input['deliveryMethod']
-    ?? $deliveryType
-);
-
-/*
-Если адрес пустой, но это самовывоз, можно взять строку адреса из customerInfo/address
-или оставить как есть
-*/
-if ($address === '' && !empty($customer['pickupAddress'])) {
-    $address = trim($customer['pickupAddress']);
+$subtotal = 0;
+foreach ($items as $item) {
+    $price = (int)($item['price'] ?? 0);
+    $quantity = (int)($item['quantity'] ?? 1);
+    $subtotal += $price * $quantity;
 }
 
-$subtotal = (int)($input['subtotal'] ?? 0);
-$deliveryCost = (int)($input['deliveryCost'] ?? 0);
-$grandTotal = (int)($input['grandTotal'] ?? 0);
-
-/*
-Если subtotal/grandTotal не пришли, считаем сами
-*/
-if ($subtotal <= 0) {
-    foreach ($items as $item) {
-        $itemPrice = (int)($item['price'] ?? 0);
-        $itemQty = (int)($item['quantity'] ?? 1);
-        $subtotal += $itemPrice * $itemQty;
-    }
-}
-
-if ($grandTotal <= 0) {
-    $grandTotal = $subtotal + $deliveryCost;
-}
-
+$deliveryCost = (int)($data['deliveryCost'] ?? 0);
+$grandTotal = $subtotal + $deliveryCost;
 $orderCode = 'OD' . date('ymdHis') . rand(100, 999);
 $itemsJson = json_encode($items, JSON_UNESCAPED_UNICODE);
 
 try {
-    $stmt = $pdo->prepare("
-        INSERT INTO orders (
-            order_code,
-            customer_name,
-            customer_phone,
-            delivery_type,
-            address,
-            comment_text,
-            items_json,
-            subtotal,
-            delivery_cost,
-            grand_total,
-            customer_id,
-            delivery_method
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ");
-
-    $stmt->execute([
-        $orderCode,
-        $customerName,
-        $customerPhone,
-        $deliveryType,
-        $address,
-        $commentText,
-        $itemsJson,
-        $subtotal,
-        $deliveryCost,
-        $grandTotal,
-        $customerId,
-        $deliveryMethod
-    ]);
+    $stmt = $pdo->prepare('INSERT INTO orders (order_code, customer_id, customer_name, customer_phone, delivery_type, delivery_label, address, comment_text, items_json, subtotal, delivery_cost, grand_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$orderCode, $customerId, $name, $phone, $deliveryType, $deliveryLabel, $address, $comment, $itemsJson, $subtotal, $deliveryCost, $grandTotal]);
 
     if (!empty($telegram['bot_token']) && !empty($telegram['chat_id'])) {
-        $lines = [];
-        $lines[] = "🛒 Новый заказ #{$orderCode}";
-        $lines[] = "";
-        $lines[] = "👤 Клиент: " . ($customerName !== '' ? $customerName : '-');
-        $lines[] = "📞 Телефон: " . ($customerPhone !== '' ? $customerPhone : '-');
-        $lines[] = "🚚 Способ получения: " . ($deliveryType !== '' ? $deliveryType : '-');
-        $lines[] = "📍 Адрес: " . ($address !== '' ? $address : '-');
-
-        if ($commentText !== '') {
-            $lines[] = "💬 Комментарий: " . $commentText;
-        }
-
-        $lines[] = "";
-        $lines[] = "📦 Товары:";
+        $text = "Новый заказ #$orderCode\n\n";
+        $text .= "Клиент: " . ($name ?: '-') . "\n";
+        $text .= "Телефон: " . ($phone ?: '-') . "\n";
+        $text .= "Доставка: " . ($deliveryLabel ?: '-') . "\n";
+        $text .= "Адрес: " . ($address ?: '-') . "\n";
+        $text .= "Комментарий: " . ($comment ?: '-') . "\n\n";
+        $text .= "Товары:\n";
 
         foreach ($items as $item) {
             $itemName = $item['name'] ?? 'Товар';
-            $itemQty = (int)($item['quantity'] ?? 1);
             $itemPrice = (int)($item['price'] ?? 0);
-            $lines[] = "— {$itemName} | {$itemQty} x {$itemPrice} ₽";
+            $itemQuantity = (int)($item['quantity'] ?? 1);
+            $text .= "$itemName — $itemQuantity шт. x $itemPrice ₽\n";
         }
 
-        $lines[] = "";
-        $lines[] = "💰 Товары: {$subtotal} ₽";
-        $lines[] = "🚚 Доставка: {$deliveryCost} ₽";
-        $lines[] = "✅ Итого: {$grandTotal} ₽";
+        $text .= "\nТовары: $subtotal ₽\n";
+        $text .= "Доставка: $deliveryCost ₽\n";
+        $text .= "Итого: $grandTotal ₽";
 
-        $text = implode("\n", $lines);
-
-        @file_get_contents(
-            "https://api.telegram.org/bot" . $telegram['bot_token'] . "/sendMessage?" .
-            http_build_query([
-                'chat_id' => $telegram['chat_id'],
-                'text' => $text
-            ])
-        );
+        file_get_contents('https://api.telegram.org/bot' . $telegram['bot_token'] . '/sendMessage?' . http_build_query([
+            'chat_id' => $telegram['chat_id'],
+            'text' => $text
+        ]));
     }
 
-    echo json_encode([
-        'success' => true,
-        'message' => 'Заказ успешно оформлен',
-        'orderId' => $orderCode
-    ], JSON_UNESCAPED_UNICODE);
-
-} catch (Throwable $e) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Ошибка при сохранении заказа: ' . $e->getMessage()
-    ], JSON_UNESCAPED_UNICODE);
+    echo json_encode(['success' => true, 'message' => 'Заказ отправлен', 'orderId' => $orderCode], JSON_UNESCAPED_UNICODE);
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => 'Ошибка сохранения заказа'], JSON_UNESCAPED_UNICODE);
 }

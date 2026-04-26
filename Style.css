@@ -1,4 +1,4 @@
-/* Основные стили */
+
 * {
     margin: 0;
     padding: 0;
@@ -15,12 +15,12 @@ body {
     flex-direction: column;
 }
 
-/* Плавная прокрутка для всех якорных ссылок */
+
 html {
     scroll-behavior: smooth;
 }
 
-/* Шапка сайта */
+
 .top {
     background: linear-gradient(to right, #ffd6e7, #c2e9fb);
     padding: 20px;
@@ -30,7 +30,7 @@ html {
     z-index: 1000;
 }
 
-/* Логотип */
+
 .logo-area {
     display: flex;
     align-items: center;
@@ -92,7 +92,7 @@ html {
     font-weight: bold;
 }
 
-/* Навигация */
+
 .nav {
     display: flex;
     gap: 15px;
@@ -123,7 +123,7 @@ html {
     border-color: white;
 }
 
-/* Счетчик корзины в навигации */
+
 .cart-count {
     position: absolute;
     top: -8px;
@@ -140,7 +140,7 @@ html {
     font-weight: bold;
 }
 
-/* Кнопка "В корзину" в карточках товаров */
+
 .add-to-cart-btn {
     width: 100%;
     padding: 12px;
@@ -169,7 +169,7 @@ html {
     transform: translateY(0);
 }
 
-/* Модальное окно корзины */
+
 .cart-modal {
     position: fixed;
     top: 0;
@@ -257,7 +257,7 @@ html {
     margin: 0;
 }
 
-/* Элементы корзины */
+
 .cart-item {
     display: grid;
     grid-template-columns: auto 1fr auto auto auto;
@@ -354,7 +354,7 @@ html {
     transform: scale(1.1);
 }
 
-/* Подвал корзины */
+
 .cart-footer {
     border-top: 2px solid #f0f0f0;
     padding: 20px;
@@ -381,7 +381,7 @@ html {
     color: #ff4081;
 }
 
-/* Опции доставки */
+
 .delivery-options {
     margin: 20px 0;
     padding: 15px;
@@ -465,7 +465,7 @@ html {
     font-style: italic;
 }
 
-/* Кнопки действий корзины */
+
 .cart-actions {
     display: flex;
     gap: 10px;
@@ -515,7 +515,7 @@ html {
     box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
 }
 
-/* Уведомления */
+
 .notification {
     position: fixed;
     bottom: 30px;
@@ -544,7 +544,7 @@ html {
     font-size: 20px;
 }
 
-/* Блоки */
+
 .welcome {
     background: linear-gradient(to right, #e3f2ff, #ffe3f2);
     margin: 20px;
@@ -577,7 +577,7 @@ html {
     flex-grow: 1;
 }
 
-/* Заголовки секций */
+
 h3 {
     color: #ff6b9d;
     font-size: 26px;
@@ -587,7 +587,7 @@ h3 {
     gap: 10px;
 }
 
-/* Товары на главной */
+
 .items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -715,7 +715,7 @@ h3 {
     text-decoration: underline;
 }
 
-/* Пагинация */
+
 .pagination {
     display: flex;
     justify-content: center;
@@ -754,7 +754,7 @@ h3 {
     font-weight: bold;
 }
 
-/* Контакты */
+
 .contact-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -794,7 +794,7 @@ h3 {
     font-size: 16px;
 }
 
-/* Футер */
+
 .bottom {
     background: linear-gradient(to right, #2c3e50, #4a6491);
     color: white;
@@ -868,7 +868,7 @@ h3 {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Кнопка Telegram */
+
 .telegram-bot-btn {
     position: fixed;
     bottom: 30px;
@@ -903,7 +903,7 @@ h3 {
     white-space: nowrap;
 }
 
-/* Анимация пульсации */
+
 @keyframes pulse {
     0% {
         box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
@@ -920,7 +920,7 @@ h3 {
     animation: pulse 2s infinite;
 }
 
-/* Стили для страниц товаров */
+
 .product-detail-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1017,7 +1017,7 @@ h3 {
     border-left: 4px solid #4da6ff;
 }
 
-/* Опции товара */
+
 .detail-options {
     margin: 25px 0;
     padding: 20px;
@@ -1031,7 +1031,7 @@ h3 {
     color: #555;
 }
 
-/* Цвета */
+
 .colors {
     display: flex;
     gap: 10px;
@@ -1069,7 +1069,7 @@ h3 {
     font-weight: bold;
 }
 
-/* Размеры */
+
 .sizes {
     display: flex;
     gap: 10px;
@@ -1106,7 +1106,7 @@ h3 {
     display: inline-block;
 }
 
-/* Оптовые цены */
+
 .bulk-pricing {
     background: white;
     border-radius: 10px;
@@ -1131,7 +1131,7 @@ h3 {
     font-size: 18px;
 }
 
-/* Описание товара */
+
 .detail-description {
     margin: 30px 0;
 }
@@ -1176,7 +1176,7 @@ h3 {
     font-weight: bold;
 }
 
-/* Особенности товара */
+
 .whats-included, .features, .care-instructions {
     background: #f8f9fa;
     padding: 20px;
@@ -1200,7 +1200,7 @@ h3 {
     font-weight: bold;
 }
 
-/* Целевая аудитория */
+
 .target-audience {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -1235,7 +1235,7 @@ h3 {
     color: #555;
 }
 
-/* Кнопки действий */
+
 .detail-actions {
     display: flex;
     gap: 15px;
@@ -1307,7 +1307,7 @@ h3 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Выбор количества */
+
 .quantity-selector {
     display: flex;
     align-items: center;
@@ -1336,7 +1336,7 @@ h3 {
     border-color: #ffb8d9;
 }
 
-/* Выбор цвета */
+
 .color-selector {
     margin: 25px 0;
 }
@@ -1364,7 +1364,7 @@ h3 {
     box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.3);
 }
 
-/* Таблица размеров */
+
 .size-guide table {
     width: 100%;
     border-collapse: collapse;
@@ -1403,7 +1403,7 @@ h3 {
     font-size: 14px;
 }
 
-/* Варианты подарков */
+
 .gift-options {
     animation: fadeIn 0.5s ease;
 }
@@ -1445,7 +1445,7 @@ h3 {
     transform: translateY(-2px);
 }
 
-/* Предупреждения */
+
 .detail-warning {
     background: #fff3cd;
     border: 1px solid #ffeaa7;
@@ -1460,7 +1460,7 @@ h3 {
     margin-right: 10px;
 }
 
-/* Похожие товары */
+
 .related-products {
     margin-top: 40px;
     padding-top: 30px;
@@ -1512,7 +1512,7 @@ h3 {
     font-size: 18px;
 }
 
-/* Анимации */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1538,7 +1538,7 @@ h3 {
 .card:nth-child(7) { animation-delay: 0.7s; }
 .card:nth-child(8) { animation-delay: 0.8s; }
 
-/* Кнопки заказа и возврата */
+
 .action-buttons {
     display: flex;
     gap: 20px;
@@ -1592,14 +1592,14 @@ h3 {
     text-decoration: none;
 }
 
-/* Для страниц товаров */
+
 .product-info .action-buttons {
     margin-top: 40px;
     padding-top: 30px;
     border-top: 2px solid #f0f0f0;
 }
 
-/* Анимации для иконок в кнопках */
+
 .order-button i, .back-button i {
     transition: transform 0.3s ease;
     font-size: 18px;
@@ -1617,7 +1617,7 @@ h3 {
     transform: translateY(-1px);
 }
 
-/* Убираем подчеркивания на карточках товаров */
+
 .card-link {
     text-decoration: none;
     color: inherit;
@@ -1631,7 +1631,7 @@ h3 {
     outline: none;
 }
 
-/* Убираем подчеркивания во всех текстовых элементах карточек */
+
 .card h4,
 .card p,
 .card .product-details,
@@ -1647,7 +1647,7 @@ h3 {
     text-decoration: none !important;
 }
 
-/* Убираем стандартные стили ссылок */
+
 a {
     text-decoration: none;
 }
@@ -1656,7 +1656,7 @@ a {
     text-decoration: none !important;
 }
 
-/* Убираем подчеркивания при наведении на всю карточку */
+
 .card:hover h4,
 .card:hover p,
 .card:hover .view-details {
@@ -1688,11 +1688,11 @@ a {
   background: #e60000;
 }
 
-/* ==================== */
-/* МЕДИА-ЗАПРОСЫ */
-/* ==================== */
 
-/* Планшеты */
+
+
+
+
 @media (max-width: 1024px) {
     .product-detail-container {
         grid-template-columns: 1fr;
@@ -1725,9 +1725,9 @@ a {
     }
 }
 
-/* Мобильные устройства */
+
 @media (max-width: 768px) {
-    /* Шапка и навигация */
+    
     .top {
         padding: 15px;
     }
@@ -1763,7 +1763,7 @@ a {
         justify-content: center;
     }
     
-    /* Основные блоки */
+    
     .welcome, .about, .products, .contacts, .product-detail-page {
         margin: 10px;
         padding: 20px 15px;
@@ -1781,7 +1781,7 @@ a {
         font-size: 22px;
     }
     
-    /* Сетка товаров */
+    
     .items-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1820,7 +1820,7 @@ a {
         margin-top: 10px;
     }
     
-    /* Детальная страница товара */
+    
     .detail-info {
         padding: 0;
     }
@@ -1853,7 +1853,7 @@ a {
         font-size: 14px;
     }
     
-    /* Кнопки действий */
+    
     .detail-actions {
         flex-direction: column;
         gap: 10px;
@@ -1875,7 +1875,7 @@ a {
         padding: 14px 20px;
     }
     
-    /* Пагинация */
+    
     .pagination {
         gap: 15px;
         margin-top: 30px;
@@ -1890,7 +1890,7 @@ a {
         font-size: 16px;
     }
     
-    /* Контакты */
+    
     .contact-cards {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -1900,7 +1900,7 @@ a {
         padding: 20px;
     }
     
-    /* Похожие товары */
+    
     .related-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1914,7 +1914,7 @@ a {
         height: 100px;
     }
     
-    /* Целевая аудитория */
+    
     .target-audience {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1923,7 +1923,7 @@ a {
         padding: 12px;
     }
     
-    /* Таблица размеров */
+    
     .size-guide table {
         font-size: 14px;
     }
@@ -1933,7 +1933,7 @@ a {
         padding: 10px;
     }
     
-    /* Футер */
+    
     .bottom {
         flex-direction: column;
         text-align: center;
@@ -1959,7 +1959,7 @@ a {
         font-size: 20px;
     }
     
-    /* Telegram кнопка */
+    
     .telegram-bot-btn {
         bottom: 20px;
         right: 20px;
@@ -1971,7 +1971,7 @@ a {
         font-size: 20px;
     }
     
-    /* Корзина */
+    
     .cart-content {
         max-width: 100%;
     }
@@ -2057,7 +2057,7 @@ a {
         font-size: 18px;
     }
     
-    /* Уведомления */
+    
     .notification {
         bottom: 20px;
         right: 20px;
@@ -2066,7 +2066,7 @@ a {
         font-size: 14px;
     }
     
-    /* Выбор количества */
+    
     .quantity-selector {
         flex-direction: column;
         align-items: flex-start;
@@ -2078,16 +2078,16 @@ a {
         min-width: auto;
     }
     
-    /* Оптовые цены */
+    
     .price-tier {
         flex-direction: column;
         gap: 5px;
     }
 }
 
-/* Маленькие мобильные устройства */
+
 @media (max-width: 480px) {
-    /* Шапка */
+    
     .top {
         padding: 12px;
     }
@@ -2113,7 +2113,7 @@ a {
         font-size: 14px;
     }
     
-    /* Навигация */
+    
     .nav {
         gap: 5px;
     }
@@ -2128,7 +2128,7 @@ a {
         font-size: 12px;
     }
     
-    /* Основные блоки */
+    
     .welcome, .about, .products, .contacts, .product-detail-page {
         margin: 8px;
         padding: 15px 12px;
@@ -2146,7 +2146,7 @@ a {
         font-size: 20px;
     }
     
-    /* Сетка товаров */
+    
     .items-grid {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -2169,7 +2169,7 @@ a {
         font-size: 16px;
     }
     
-    /* Детальная страница */
+    
     .detail-info h2 {
         font-size: 22px;
     }
@@ -2192,7 +2192,7 @@ a {
         height: 35px;
     }
     
-    /* Похожие товары */
+    
     .related-grid {
         grid-template-columns: 1fr;
     }
@@ -2216,12 +2216,12 @@ a {
         flex: 1;
     }
     
-    /* Целевая аудитория */
+    
     .target-audience {
         grid-template-columns: 1fr;
     }
     
-    /* Пагинация */
+    
     .prev-page span, .next-page span {
         display: none;
     }
@@ -2234,7 +2234,7 @@ a {
         padding: 12px 18px;
     }
     
-    /* Telegram кнопка */
+    
     .telegram-bot-btn {
         bottom: 15px;
         right: 15px;
@@ -2254,7 +2254,7 @@ a {
         margin: 0;
     }
     
-    /* Корзина */
+    
     .cart-item {
         padding: 10px;
     }
@@ -2277,13 +2277,13 @@ a {
         font-size: 14px;
     }
     
-    /* Кнопки */
+    
     .order-button, .back-button {
         padding: 12px 15px;
         font-size: 14px;
     }
     
-    /* Футер */
+    
     .small-logo {
         width: 40px;
         height: 40px;
@@ -2300,7 +2300,7 @@ a {
         font-size: 18px;
     }
     
-    /* Уведомление */
+    
     .notification {
         bottom: 15px;
         right: 15px;
@@ -2313,7 +2313,7 @@ a {
     }
 }
 
-/* Очень маленькие устройства */
+
 @media (max-width: 360px) {
     .main-title {
         font-size: 20px;
@@ -2368,7 +2368,7 @@ a {
     }
 }
 
-/* Исправление для ландшафтной ориентации на мобильных */
+
 @media (max-height: 500px) and (orientation: landscape) {
     .cart-content {
         max-width: 400px;
